@@ -1,5 +1,12 @@
 # wepy-redux-starter
 
+## 介绍
+
+-   [wepyjs](https://github.com/Tencent/wepy)：一款让小程序支持组件化开发的框架
+-   支持Promise
+-   支持ES2015+特性，如Async Functions
+-   使用发布/订阅模式处理异步globalData
+
 ## How to run
 
 clone 本项目后，在根目录执行以下命令：
