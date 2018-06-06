@@ -1,0 +1,55 @@
+{
+	"description": "A WePY project",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wx65675152d371d622",
+	"projectname": "amusingfeel",
+	"miniprogramRoot": "./dist",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "用户中心",
+					"pathName": "pages/user",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "Demo大全",
+					"pathName": "pages/test",
+					"query": "param=abc",
+					"scene": "1011"
+				}
+			]
+		}
+	}
+}

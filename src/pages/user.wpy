@@ -1,0 +1,97 @@
+<style lang="less">
+  .u-btn-default{
+    margin: 15px auto;
+  }
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .userinfo-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+  }
+  .userinfo-nickname {
+    color: #aaa;
+  }
+</style>
+
+<template>
+  <view class="userinfo">
+    <demo />
+    <button class="u-btn-default" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权用户信息</button>
+    
+    <view>{{userInfo}}</view>
+    <open-data type="userAvatarUrl"></open-data>
+    <open-data type="userNickName"></open-data>
+    <open-data type="userProvince"></open-data>
+    <view @tap="follow">
+      {{followed ? '已' : ''}}关注
+    </view>
+    <br/>
+    <view @tap="getAge(20)">
+      点我获取年龄: {{age}}
+    </view>
+    <view>
+      从data上取到的数据是：{{msg}}
+    </view>
+  </view>
+</template>
+
+<script>
+/**
+ * 用户中心
+ * @author whr
+ * @since 2018.05.30
+ */
+  import wepy from 'wepy';
+  import { connect } from 'wepy-redux';
+  import { getAge } from "../store/actions/user";
+  import { USER_FOLLOW } from "../store/types/user";
+  import { emitter } from 'utils'
+  import Demo from 'components/demo';
+  
+
+  @connect({
+    age({ user }) {
+      return user.age;
+    },
+    followed({ user }) {
+      return user.followed
+    }
+  }, {
+    follow: USER_FOLLOW,
+    getAge
+  })
+  export default class User extends wepy.page {
+    components = {
+      demo: Demo
+    }
+    config = {
+      navigationBarTitleText: '用户中心',
+      navigationBarTextStyle: 'white', // 导航栏标题颜色
+      navigationBarBackgroundColor: '#08979c', // 导航栏背景颜色
+    };
+    data = {
+      msg: '有消息了',
+      userInfo: '',
+    };
+    methods = {
+      getUserInfo(e){
+        this.$parent.setUserInfo(e);
+      }
+    }
+    todo(){
+      this.userInfo = this.$parent.globalData.userInfo;
+      this.$apply();
+    }
+    onLoad(){
+      if (!this.$parent.globalData.userInfo) {
+        emitter.on('userInfo', this.todo.bind(this))
+      } else {
+        this.todo();
+      }
+    }
+  }
+</script>
