@@ -27,7 +27,7 @@ yarn install
 #### 开发实时编译
 
 ```
-wepy build --watch
+npm run dev
 ```
 
 #### 开发者工具导入项目
